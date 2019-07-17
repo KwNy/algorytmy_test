@@ -1,5 +1,3 @@
-//uzywam git difftool
-
 function merge(arrA, arrB){
 
     let result = []; 
