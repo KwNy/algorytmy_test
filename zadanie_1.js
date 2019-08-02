@@ -24,10 +24,7 @@ function merge(arrA, arrB){
   
   
   return result.concat(arrB, arrA);
-  
-  
   }
-  
   
   function mergeSort(arr){
     console.log(arr)
@@ -42,36 +39,32 @@ function merge(arrA, arrB){
     let rightSorted = mergeSort(arr.slice(mid,arr.length));
   
     return merge(leftSorted, rightSorted)
-  
-  
   }
   
-   
   console.log(mergeSort([9,8,100,7]))
   
-//bubble sort 
 
 function bubbleSort(array) {
 
-  let Issorted = false; 
+  let isSorted = false; 
   let len = array.length;
-  console.log(array.length)
 
-  while(Issorted===false){
+  while(isSorted===false){
 
     console.log('waiting to sort')
+    isSorted = true;
 
-    for(let i = 0; i < len-1; i++){
+    for(let i = 0; i < len-1-i; i++){
 
-    console.log('unsorted list start at', i, 'ends at', len)
+    console.log('unsorted list starts at', i, 'ends at', len)
 
       if(array[i]>array[i+1]){
         temp = array[i+1];
         array[i+1] = array[i];
         array[i] = temp;
+        isSorted = false;
       }
     }
-    Issorted = true;
   }
   return array
 }
@@ -80,5 +73,59 @@ console.log(bubbleSort([1,5,2,8,7]))
 
 // https://www.youtube.com/watch?v=6Gv8vg0kcHc
 
-//dlaczego musi sobie odejmuje --- length, przeciez nie dojdzie nigsy do ostatniego elementu 
+function bubbleSort_2(arr){
 
+  for(let i = 0; i < arr.length; i++){
+  
+    for(let j = 1; j < arr.length-1-i; j++){
+      if(arr[j]>arr[j+1]){
+        let temp = arr[j+1];
+        arr[j+1] = arr[j];
+        arr[j] = arr[j+1]
+      }
+    }
+  }
+  return arr
+}
+
+
+function bubbleSort_3(array) {
+  for (let i = 0; i < array.length; i++){
+    for (let j = 0; j < array.length-1-i; j++){
+      if (array[j] > array[j+1]) [array[j], array[j+1]] = [array[j+1], array[j]]; // Using ES6 array destructuring to swap
+    }
+  }
+  return array;
+}
+
+
+function selectionSort(arr){
+  for(let i = 0; i < arr.length; i++){
+    console.log('--->',i)
+    let minIndx = i;
+    for(let j = i + 1; j <=arr.length; j++){
+
+      console.log('*******>',j)
+      if(arr[j]<arr[minIndx]){
+        minIndx = j
+      }
+    }
+    let temp = arr[i];
+    arr[i] = arr[minIndx];
+    arr[minIndx] = temp
+  }
+  return arr
+}
+
+// console.log(selectionSort([2,1,7,3]))
+
+
+// Insertion Sort Algorithm
+
+// Get a list of unsorted numbers
+// Set a marker for the sorted section after the first number in the list
+// Repeat steps 4 through 6 until the unsorted section is empty
+// Select the first unsorted number
+// Swap this number to the left until it arrives at the correct sorted position
+// Advance the marker to the right one position
+// Stop
